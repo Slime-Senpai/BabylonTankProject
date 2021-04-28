@@ -368,7 +368,7 @@ function createTank (scene, tankName, isHeroTank, tankBodyMaterial, tankTurretMa
       tank.body.moveWithCollisions(tank.body.frontVector.multiplyByFloats(tank.speed, tank.speed, tank.speed));
 
       if (tank.body.position.x > 950 || tank.body.position.x < -950 || tank.body.position.z > 950 || tank.body.position.z < -950) {
-        tank.die();
+        tank.die(false);
       }
     }
     tank.turret.frontVector = new BABYLON.Vector3(Math.sin(tank.turret.rotation.y), tank.gun.rotation.x, Math.cos(tank.turret.rotation.y));
@@ -377,24 +377,26 @@ function createTank (scene, tankName, isHeroTank, tankBodyMaterial, tankTurretMa
     tank.gun.move();
   };
 
-  tank.die = () => {
+  tank.die = (byPlayer) => {
     tank.body.dispose();
     tank.turret.dispose();
     tank.gun.dispose();
-    scene.assets.explosion.setVolume(0.4);
-    scene.assets.explosion.play();
-    scene.tanks.splice(scene.tanks.indexOf(tank), 1);
-    score++;
-    scene.assets.kill.setVolume(0.4);
-    scene.assets.kill.play();
-    text1.text = 'Score: ' + score;
+    if (byPlayer) {
+      scene.assets.explosion.setVolume(0.4);
+      scene.assets.explosion.play();
+      scene.tanks.splice(scene.tanks.indexOf(tank), 1);
+      score++;
+      scene.assets.kill.setVolume(0.4);
+      scene.assets.kill.play();
+      text1.text = 'Score: ' + score;
+    }
   };
 
   tank.decreaseHealth = () => {
     tank.health--;
 
     if (tank.health <= 0) {
-      tank.die();
+      tank.die(true);
     } else {
       scene.assets.hit.setVolume(0.4);
       scene.assets.hit.play();
