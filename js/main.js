@@ -497,9 +497,9 @@ window.addEventListener('resize', () => {
 
 function modifySettings () {
   window.addEventListener('keydown', (event) => {
-    if ((event.key === 'q') || (event.key === 'Q')) {
+    if ((event.key === 'q') || (event.key === 'Q') || (event.key === 'a') || (event.key === 'A')) {
       inputStates.left = true;
-    } else if ((event.key === 'z') || (event.key === 'Z')) {
+    } else if ((event.key === 'z') || (event.key === 'Z') || (event.key === 'w') || (event.key === 'W')) {
       inputStates.up = true;
     } else if ((event.key === 'd') || (event.key === 'D')) {
       inputStates.right = true;
