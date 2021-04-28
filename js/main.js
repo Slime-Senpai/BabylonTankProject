@@ -519,9 +519,9 @@ function modifySettings () {
   }, false);
 
   window.addEventListener('keyup', (event) => {
-    if ((event.key === 'q') || (event.key === 'Q')) {
+    if ((event.key === 'q') || (event.key === 'Q') || (event.key === 'a') || (event.key === 'A')) {
       inputStates.left = false;
-    } else if ((event.key === 'z') || (event.key === 'Z')) {
+    } else if ((event.key === 'z') || (event.key === 'Z') || (event.key === 'w') || (event.key === 'W')) {
       inputStates.up = false;
     } else if ((event.key === 'd') || (event.key === 'D')) {
       inputStates.right = false;
